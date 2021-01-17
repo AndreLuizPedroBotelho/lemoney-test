@@ -46,9 +46,7 @@ class Database {
       resolve(true)
     }))
 
-    this.connection.sync({
-      force: false
-    })
+    this.connection.sync()
 
   }
 }

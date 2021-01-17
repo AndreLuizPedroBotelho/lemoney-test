@@ -22,7 +22,9 @@ class OfferController {
     const offers = await Offer.findAll({
       where: {
         ...options
-      }
+      }, order: [
+        ['id', 'DESC']
+      ],
     })
 
     response.json({ payload: offers })
@@ -90,7 +92,6 @@ class OfferController {
   }
 
   async destroy(request, response) {
-    console.log('assa')
     const { id } = request.params
 
     const offer = await Offer.findByPk(id)
