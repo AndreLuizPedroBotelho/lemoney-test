@@ -8,7 +8,7 @@
     "dev": "http-server ./pages -p 8080 -o"
   },
   "keywords": [],
-  "author": "",
+  "author": "André Luiz Pedro botelho",
   "license": "ISC",
   "dependencies": {
     "http-server": "^0.12.3"

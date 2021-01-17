@@ -5,13 +5,12 @@
   "main": "src/server.js",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "migrations": "npx sequelize db:migrate",
     "build": "sucrase ./src -d ./dist --transforms imports",
     "start": "npm run build && node dist/server.js",
     "test": "DB_DIALECT=sqlite jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "André Luiz Pedro botelho",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
