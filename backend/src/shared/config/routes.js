@@ -8,6 +8,10 @@ import OfferChangeActiveValidation from '../../modules/offer/validation/OfferCha
 
 const routes = new Router()
 
+routes.get('/', (request, response) => {
+  response.send('API LEMONEY TEST')
+})
+
 routes.get('/offer/:id', OfferController.show)
 
 routes.get('/offer', OfferController.index)
