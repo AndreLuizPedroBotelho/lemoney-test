@@ -3,9 +3,6 @@
 </div>
 
 
-## Project developed 
-
-
 ---
 
 ### Clone
