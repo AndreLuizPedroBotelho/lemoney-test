@@ -2,7 +2,12 @@ function submit(event) {
   event.preventDefault();
 
   const advertiser_name = document.getElementById('advertiser_name').value
-  const urlI = document.getElementById('url').value
+  let urlI = document.getElementById('url').value
+
+  if (!urlI.match(/^http?:\/\//i) && !urlI.match(/^https?:\/\//i)) {
+    urlI = 'http://' + urlI;
+  }
+
   const description = document.getElementById('description').value
   const starts_at = document.getElementById('starts_at').value
 
@@ -62,14 +67,19 @@ function openModal() {
 
 }
 
-function getDate(date) {
+function getDate(date, format = 'database') {
   const newDate = new Date(date)
 
   const day = ('0' + newDate.getDate().toString()).slice(-2)
   const year = newDate.getFullYear().toString()
   const month = ('0' + (newDate.getMonth() + 1)).slice(-2)
 
-  return `${year}-${month}-${day}`
+  const formatReturnDate = {
+    database: `${year}-${month}-${day}`,
+    usa: `${month}-${day}-${year}`
+  }
+
+  return formatReturnDate[format]
 }
 
 function editModal(id) {
@@ -107,7 +117,12 @@ function changeStatus(id, active) {
   axios.put(`${url}/offerChangeActive/${id}`, { active: active })
     .then(response => {
       if (response.data.payload.state !== active) {
-        alert(`Offer will be enable after ${getDate(response.data.payload.starts_at)}!`)
+        Swal.fire(
+          'Alert',
+          `Offer will be enable after ${getDate(response.data.payload.starts_at, 'usa')}!`,
+          'info'
+        )
+
       }
 
       loadOffer()

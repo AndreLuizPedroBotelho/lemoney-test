@@ -4,21 +4,23 @@ axios({
   url: `${url}/offer?state=true`,
 })
   .then(response => {
-
     const newBody = response.data.payload.map((data) => {
       getCountdown(data)
       return `
           <div class="card col-xl-3 mb-2 margin-card  col-lg-3 col-md-5 col-sm-6 col-xs-6" >
-              ${data.premium ? `
+              ${data.ends_at ? `
               <div id="countdownCard${data.id}" class="countdownCard"> </div>
+              ` : ''}
+              ${data.premium ? `
+
               <div class="premiumCard">premium </div>
               ` : ''}
 
               <div class="card-body text-center paddingCard">
                 <p class="card-text">${data.advertiser_name}</p>
 
-                <a href="${!data.url.includes('http://') ? 'http://' : ''}${data.url}" target="_blank" 
-                    class="btn text-center ${data.premium ? 'btn-success' : 'btn-secondary'} active">Shop Now</a>
+                <button type="button" onclick="redirectUrl('${data.url}')"
+                    class="btn text-center ${data.premium ? 'btn-success' : 'btn-secondary'} active">Shop Now</button>
               </div>
           </div>
       `
@@ -32,6 +34,15 @@ axios({
     alert('Error')
   })
 
+function redirectUrl(url) {
+  let urlOpen = url
+
+  if (!url.match(/^http?:\/\//i) && !url.match(/^https?:\/\//i)) {
+    urlOpen = 'http://' + url;
+  }
+
+  window.open(urlOpen, '_blank');
+}
 
 function getCountdown({ id, ends_at }) {
   const endsAt = new Date(ends_at)
