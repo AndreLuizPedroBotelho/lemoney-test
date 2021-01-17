@@ -107,9 +107,9 @@ function changeStatus(id, active) {
   axios.put(`${url}/offerChangeActive/${id}`, { active: active })
     .then(response => {
       if (response.data.payload.state !== active) {
-        alert("Offer can't be enable because of the rules!")
-        return changeStatus(id, !active)
+        alert(`Offer will be enable after ${getDate(response.data.payload.starts_at)}!`)
       }
+
       loadOffer()
     })
     .catch(error => {

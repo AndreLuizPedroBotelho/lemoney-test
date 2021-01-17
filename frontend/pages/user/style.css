@@ -1,11 +1,24 @@
 .premiumCard {
   position: absolute;
   color: white;
-  background-color: red;
+  background-color: #ce0303;
   padding: 5px;
   border-radius: 21px;
   font-size: 14px;
   right: 0;
+  display: flex;
+  align-content: normal;
+  top: -10px;
+}
+
+.countdownCard {
+  position: absolute;
+  color: white;
+  background-color: #4eb14e;
+  padding: 5px;
+  border-radius: 21px;
+  font-size: 14px;
+  left: 0;
   display: flex;
   align-content: normal;
   top: -10px;
