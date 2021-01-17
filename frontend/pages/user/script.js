@@ -14,7 +14,7 @@ axios({
               <div class="premiumCard">premium </div>
               ` : ''}
 
-              <div class="card-body text-center">
+              <div class="card-body text-center paddingCard">
                 <p class="card-text">${data.advertiser_name}</p>
 
                 <a href="${!data.url.includes('http://') ? 'http://' : ''}${data.url}" target="_blank" 
