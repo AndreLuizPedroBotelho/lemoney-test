@@ -1,0 +1,17 @@
+{
+  "name": "lemoney-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "lerna run start --parallel",
+    "dev": "lerna run dev --parallel",
+    "postinstall": "lerna bootstrap"
+  },
+  "keywords": [],
+  "author": "André Luiz Pedro botelho",
+  "license": "ISC",
+  "dependencies": {
+    "lerna": "^3.22.1"
+  }
+}

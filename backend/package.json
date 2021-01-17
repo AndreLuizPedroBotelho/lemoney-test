@@ -1,0 +1,36 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "migrations": "npx sequelize db:migrate",
+    "build": "sucrase ./src -d ./dist --transforms imports",
+    "start": "npm run build && node dist/server.js",
+    "test": "DB_DIALECT=sqlite jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "date-fns": "^2.16.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.3.1",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0",
+    "sqlite3": "^5.0.1",
+    "supertest": "^6.1.1",
+    "yup": "^0.32.8"
+  },
+  "devDependencies": {
+    "@sucrase/jest-plugin": "^2.0.0",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "sucrase": "^3.17.0"
+  }
+}

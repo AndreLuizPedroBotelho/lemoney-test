@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>Admin</title>
+
+</head>
+
+<body>
+  <div class="container">
+    <h2>Admin</h2>
+    <button type="button" class="btn btn-primary" onclick="openModal()">
+      Create Offer
+    </button>
+    <br> <br>
+
+    <h2>Offers</h2>
+
+    <table class="table table-striped" id="tableOffer">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">name</th>
+          <th scope="col">url</th>
+          <th scope="col">status</th>
+          <th scope="col">actions</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="modal fade" id="saveOfferModal" tabindex="-1" role="dialog" aria-labelledby="saveOfferModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="modal-body">
+          <h2 id="title-modal"></h2>
+
+          <input type="hidden" class="form-control" id="id">
+
+          <form id="saveForm">
+            <div class="form-group">
+              <label for="advertiser_name">Advertise Name</label>
+              <input type="text" class="form-control" id="advertiser_name" placeholder="Enter advertiser_name">
+            </div>
+
+            <div class="form-group">
+              <label for="url">Url</label>
+              <input type="text" class="form-control" id="url" placeholder="Enter url">
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea class="form-control" id="description" placeholder="Enter description"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="starts_at">Starts At</label>
+              <input type="date" class="form-control" id="starts_at" placeholder="Enter starts_at">
+            </div>
+
+            <div class="form-group">
+              <label for="ends_at">Ends At</label>
+              <input type="date" class="form-control" id="ends_at" placeholder="Enter ends_at">
+            </div>
+
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="premium">
+              <label class="form-check-label" for="premium">Premium</label>
+            </div>
+
+            <br>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="../utils/consts.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript" src="script.js"></script>
+
+</html>
