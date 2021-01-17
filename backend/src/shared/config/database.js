@@ -2,11 +2,14 @@ import Sequelize from 'sequelize'
 
 import Offer from '../../modules/offer/model/Offer'
 
+import { clearStorage } from '../utils/function';
 const models = [Offer]
 
 class Database {
   constructor() {
     this.init()
+
+    clearStorage('./database.sqlite')
   }
 
   connectionOption() {
@@ -29,7 +32,6 @@ class Database {
         dialect: 'sqlite',
         storage: './database.sqlite',
         logging: false,
-
       },
     }
 
@@ -43,9 +45,7 @@ class Database {
       .map(model => model.init(this.connection))
       .map(model => model.associate && model.associate(this.connection.models))
 
-
     this.connection.sync()
-
   }
 }
 export default new Database()

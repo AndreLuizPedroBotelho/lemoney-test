@@ -1,4 +1,5 @@
 import isAfter from 'date-fns/isAfter'
+import fs from 'fs'
 
 const getState = ({ starts_at, ends_at, active }) => {
   if (active === false ||
@@ -11,4 +12,10 @@ const getState = ({ starts_at, ends_at, active }) => {
   return true
 }
 
-export { getState }
+const clearStorage = (storage) => {
+  if (fs.existsSync(storage)) {
+    fs.unlinkSync(storage);
+  }
+}
+
+export { getState, clearStorage }
