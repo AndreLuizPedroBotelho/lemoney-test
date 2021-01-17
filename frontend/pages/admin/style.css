@@ -1,3 +1,15 @@
 .error {
   border-color: red
 }
+
+.mainContainer{
+  padding: 10px;
+}
+
+.btn-create{
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  float: right;
+}
