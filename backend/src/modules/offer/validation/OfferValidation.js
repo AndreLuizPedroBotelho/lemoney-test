@@ -12,6 +12,11 @@ class OfferValidation {
           .test("checkOffer", 'advertiser_name already exist', async function (value) {
             return Promise.resolve(new Promise(async (resolve, reject) => {
               const id = parseInt(request.params.id) || 0
+              if (!value) {
+                return resolve(true)
+
+              }
+
               const offer = await Offer.findOne({
                 where: {
                   advertiser_name: value,

@@ -1,6 +1,7 @@
-import app from '../../../app'
+import app from '../../../../app'
 import request from 'supertest'
 import { addDays, subDays } from 'date-fns'
+
 
 describe('OfferTest', () => {
 
@@ -22,6 +23,59 @@ describe('OfferTest', () => {
     expect(response.status).toBe(200)
     expect(response.body.payload.advertiser_name).toEqual(offer.advertiser_name)
 
+    done()
+  })
+
+  it("check advertiser_name already exist", async (done) => {
+    const offer = {
+      "advertiser_name": `TesteOffer${Math.random()}`,
+      "url": "www.url-test.com",
+      "description": "Teste",
+      "starts_at": subDays(new Date(), 10),
+      "ends_at": addDays(new Date(), 10),
+      "premium": true
+    }
+
+    await request(app)
+      .post('/offer')
+      .send(offer)
+      .set('Accept', 'application/json')
+
+    const response = await request(app)
+      .post('/offer')
+      .send(offer)
+      .set('Accept', 'application/json')
+
+    expect(response.status).toBe(400)
+    expect(response.body.error[0].message).toEqual("advertiser_name already exist")
+
+    done()
+  })
+
+  it("check required columns", async (done) => {
+    const offer = {
+      "ends_at": addDays(new Date(), 10),
+      "premium": true
+    }
+
+    const response = await request(app)
+      .post('/offer')
+      .send(offer)
+      .set('Accept', 'application/json')
+
+    expect(response.status).toBe(400)
+    expect(response.body.error.length).toEqual(4)
+
+    expect(response.body.error).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining(
+          { "path": "advertiser_name", "message": "advertiser_name is a required field" },
+          { "path": "url", "message": "url is a required field" },
+          { "path": "description", "message": "description is a required field" },
+          { "path": "starts_at", "message": "starts_at is a required field" }
+        )
+      ])
+    )
     done()
   })
 
@@ -105,6 +159,18 @@ describe('OfferTest', () => {
     done()
   })
 
+  it("check show offer error", async (done) => {
+
+    const response = await request(app)
+      .get(`/offer/9999`)
+      .set('Accept', 'application/json')
+
+    expect(response.status).toBe(403)
+    expect(response.body.message).toEqual("Offer doesn't find")
+
+    done()
+  })
+
   it("check list offer", async (done) => {
     const offer = {
       "advertiser_name": `TesteOffer${Math.random()}`,
@@ -166,4 +232,5 @@ describe('OfferTest', () => {
 
     done()
   })
+
 })

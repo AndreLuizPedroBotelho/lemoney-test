@@ -3,7 +3,7 @@
     "src/",
     ".env"
   ],
-  "delay": "5",
+  "delay": "150",
   "ext": ".js, .css",
   "exec": "node  -r sucrase/register"
 }

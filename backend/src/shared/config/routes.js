@@ -7,6 +7,7 @@ import OfferOfferValidation from '../../modules/offer/validation/OfferValidation
 import OfferChangeActiveValidation from '../../modules/offer/validation/OfferChangeActiveValidation'
 
 const routes = new Router()
+
 routes.get('/offer/:id', OfferController.show)
 
 routes.get('/offer', OfferController.index)

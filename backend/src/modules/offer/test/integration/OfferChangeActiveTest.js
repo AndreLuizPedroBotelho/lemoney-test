@@ -1,4 +1,4 @@
-import app from '../../../app'
+import app from '../../../../app'
 import request from 'supertest'
 import { addDays, subDays } from 'date-fns'
 
@@ -61,5 +61,20 @@ describe('OfferChangeActiveTest', () => {
     done()
   })
 
+
+  it("check update change offer not active", async (done) => {
+
+    const response = await request(app)
+      .put(`/offerChangeActive/9999`)
+      .send({
+        active: false
+      })
+      .set('Accept', 'application/json')
+
+    expect(response.status).toBe(403)
+    expect(response.body.message).toEqual("Offer doesn't find")
+
+    done()
+  })
 
 })

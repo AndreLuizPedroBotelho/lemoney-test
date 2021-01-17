@@ -1,5 +1,5 @@
 import Sequelize, { Model } from 'sequelize'
-import { getState } from '../../../shared/utils/function'
+import { getState } from '../utils/function'
 
 class Offer extends Model {
 
