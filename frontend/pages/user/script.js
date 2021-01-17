@@ -24,5 +24,5 @@ axios({
     )
   })
   .catch(error => {
-    alert(error)
+    alert('Error')
   })

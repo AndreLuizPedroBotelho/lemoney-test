@@ -29,18 +29,33 @@ function submit(event) {
     loadOffer()
     $('#saveOfferModal').modal('toggle');
   })
-    .catch(error => {
-      console.log(error)
+    .catch(err => {
+      $(".error_message").remove();
+
+      err.response.data.error.map(error => {
+        $(`#${error.path}`).addClass('error')
+        console.log(error)
+
+        $(`#${error.path}`).after(`<p class="error_message text-danger">${error.message}<p/>`)
+
+      })
+
     });
 
 }
 
 $("#saveForm").submit(submit);
 
-function openModal() {
+function clearModal() {
   $('#saveForm').trigger("reset");
-  document.getElementById('id').value = ''
 
+  document.getElementById('id').value = ''
+  $("input,textarea").removeClass("error")
+  $(".error_message").remove();
+}
+
+function openModal() {
+  clearModal()
   $('#saveOfferModal').modal();
 
   document.getElementById('title-modal').innerHTML = 'New Offer'
@@ -73,7 +88,7 @@ function editModal(id) {
 
     })
     .catch(error => {
-      console.log(error)
+      alert('Error')
     })
 }
 
@@ -83,7 +98,7 @@ function destroy(id) {
       loadOffer()
     })
     .catch(error => {
-      console.log(error)
+      alert('Error')
     })
 }
 
@@ -98,7 +113,7 @@ function changeStatus(id, active) {
       loadOffer()
     })
     .catch(error => {
-      console.log(error)
+      alert('Error')
     })
 }
 
@@ -135,7 +150,7 @@ function loadOffer() {
       )
     })
     .catch(error => {
-      console.log(error)
+      alert('Error')
     })
 }
 
