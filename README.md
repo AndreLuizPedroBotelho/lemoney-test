@@ -33,7 +33,7 @@ Configure env file in backend folders using env.example as a base
 
 ---
 
-Start projects
+Start all projects
 
 ```sh
 $ npm start
@@ -41,7 +41,7 @@ $ npm start
 
 ---
 
-Test projects
+Test project Backend
 
 ```sh
 $ cd backend && npm run test
